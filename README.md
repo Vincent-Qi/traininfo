@@ -20,8 +20,29 @@
 
 <h4 id="获取联系人信息"><i class="icon-file"></i>获取联系人信息</h4>
 
-<pre><code>iaun.queryMyContentAsString()
-</code></pre>
+
+
+<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
+     * queryMyContentAsBean(查询联系人返回实体bean)
+     * 
+     *<span class="hljs-javadoctag"> @return</span> MyContent
+     *<span class="hljs-javadoctag"> @exception</span>
+     *<span class="hljs-javadoctag"> @since</span> 1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> MyContent <span class="hljs-title">queryMyContentAsBean</span>();
+
+    <span class="hljs-javadoc">/**
+     * queryMyContentAsString(查询联系人返回实体toString)
+     * 
+     *<span class="hljs-javadoctag"> @return</span> String
+     *<span class="hljs-javadoctag"> @exception</span>
+     *<span class="hljs-javadoctag"> @since</span> 1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title">queryMyContentAsString</span>();</code></pre>
+
+<blockquote>
+  <p>iaun.queryMyContentAsString()</p>
+</blockquote>
 
 <table>
 <thead>
@@ -71,8 +92,29 @@
 
 <h4 id="获取个人注册信息"><i class="icon-file"></i>获取个人注册信息</h4>
 
-<pre><code>iaun.querySelfCountAsString()
-</code></pre>
+
+
+<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
+     * querySelfCountAsBean(查询个人信息返回个人信息实体)
+     * 
+     *<span class="hljs-javadoctag"> @return</span> SelfContent
+     *<span class="hljs-javadoctag"> @exception</span>
+     *<span class="hljs-javadoctag"> @since</span> 1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> SelfContent <span class="hljs-title">querySelfCountAsBean</span>();
+
+    <span class="hljs-javadoc">/**
+     * querySelfCountAsString(查询个人信息返回实体toString)
+     * 
+     *<span class="hljs-javadoctag"> @return</span> String
+     *<span class="hljs-javadoctag"> @exception</span>
+     *<span class="hljs-javadoctag"> @since</span> 1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title">querySelfCountAsString</span>();</code></pre>
+
+<blockquote>
+  <p>iaun.querySelfCountAsString()</p>
+</blockquote>
 
 <table>
 <thead>
@@ -104,8 +146,34 @@
 
 <h4 id="车次途径站信息"><i class="icon-file"></i>车次途径站信息</h4>
 
-<pre><code>iaun.queryTrainInfoAsString("k8554", "阜阳", "合肥")
-</code></pre>
+
+
+<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
+     * queryTrainInfoAsBean(查询车次信息返回车次实体)
+     *<span class="hljs-javadoctag"> @param</span> train_no  车次
+     *<span class="hljs-javadoctag"> @param</span> start     开始站
+     *<span class="hljs-javadoctag"> @param</span> end       结束站
+     *<span class="hljs-javadoctag"> @return</span> 
+     *TrainInfo
+     *<span class="hljs-javadoctag"> @exception</span> 
+     *<span class="hljs-javadoctag"> @since</span>  1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> TrainInfo <span class="hljs-title">queryTrainInfoAsBean</span>(String train_no, String start,
+            String end);
+
+    <span class="hljs-javadoc">/**
+     * queryTrainInfoAsString(查询车次信息返回车次实体toString)
+     * 
+     *<span class="hljs-javadoctag"> @return</span> String
+     *<span class="hljs-javadoctag"> @exception</span>
+     *<span class="hljs-javadoctag"> @since</span> 1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title">queryTrainInfoAsString</span>(String train_no, String start,
+            String end);</code></pre>
+
+<blockquote>
+  <p>iaun.queryTrainInfoAsString(“k8554”, “阜阳”, “合肥”)</p>
+</blockquote>
 
 <table>
 <thead>
@@ -171,8 +239,40 @@
 
 <h4 id="获取余票信息"><i class="icon-file"></i>获取余票信息</h4>
 
-<pre><code>iaun.querySeatsLeftAsString("成人", "2015-02-04", "阜阳", "合肥")
-</code></pre>
+
+
+<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
+     * 
+     * querySeatsLeftAsBean(查询余票返回实体)
+     * 
+     *<span class="hljs-javadoctag"> @param</span> purpose 乘客类型(成人,学生)
+     *<span class="hljs-javadoctag"> @param</span> date  出发日期
+     *<span class="hljs-javadoctag"> @param</span> start 开始站
+     *<span class="hljs-javadoctag"> @param</span> end   结束站
+     *<span class="hljs-javadoctag"> @return</span> TicketInfo
+     *<span class="hljs-javadoctag"> @exception</span>
+     *<span class="hljs-javadoctag"> @since</span> 1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> TicketInfo <span class="hljs-title">querySeatsLeftAsBean</span>(String purpose, String date,
+            String start, String end);
+
+    <span class="hljs-javadoc">/**
+     * querySeatsLeftAsString(查询余票返回实体的toString)
+     * 
+     *<span class="hljs-javadoctag"> @param</span> purpose 乘客类型(成人,学生)
+     *<span class="hljs-javadoctag"> @param</span> date  出发日期
+     *<span class="hljs-javadoctag"> @param</span> start 开始站
+     *<span class="hljs-javadoctag"> @param</span> end   结束站
+     *<span class="hljs-javadoctag"> @return</span> TicketInfo
+     *<span class="hljs-javadoctag"> @exception</span>
+     *<span class="hljs-javadoctag"> @since</span> 1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title">querySeatsLeftAsString</span>(String purpose, String date,
+            String start, String end);</code></pre>
+
+<blockquote>
+  <p>iaun.querySeatsLeftAsString(“成人”, “2015-02-04”, “阜阳”, “合肥”)</p>
+</blockquote>
 
 <table>
 <thead>
@@ -372,8 +472,35 @@
 
 <h4 id="获取历史订单信息"><i class="icon-file"></i>获取历史订单信息</h4>
 
-<pre><code>iaun.queryOrdersAsString("2014-10-02", "2015-02-03", "")
-</code></pre>
+
+
+<pre class="prettyprint"><code class=" hljs java">    <span class="hljs-javadoc">/**
+     * queryOrdersAsBean(查询订单返回订单实体)
+     *<span class="hljs-javadoctag"> @param</span> startdate 历史订单起始时间
+     *<span class="hljs-javadoctag"> @param</span> enddate   历史订单结束时间
+     *<span class="hljs-javadoctag"> @param</span> queryinfo [订单号,车次,乘客姓名]
+     *<span class="hljs-javadoctag"> @return</span> 
+     *<span class="hljs-javadoctag"> @exception</span> 
+     *<span class="hljs-javadoctag"> @since</span>  1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> Orders <span class="hljs-title">queryOrdersAsBean</span>(String startdate, String enddate,
+            String queryinfo);
+
+    <span class="hljs-javadoc">/**
+     * queryOrdersAsString(查询订单返回实体toString)
+     *<span class="hljs-javadoctag"> @param</span> startdate 历史订单起始时间
+     *<span class="hljs-javadoctag"> @param</span> enddate   历史订单结束时间
+     *<span class="hljs-javadoctag"> @param</span> queryinfo [订单号,车次,乘客姓名]
+     *<span class="hljs-javadoctag"> @return</span> 
+     *<span class="hljs-javadoctag"> @exception</span> 
+     *<span class="hljs-javadoctag"> @since</span>  1.0.0
+     */</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title">queryOrdersAsString</span>(String startdate, String enddate,
+            String queryinfo);</code></pre>
+
+<blockquote>
+  <p>iaun.queryOrdersAsString(“2014-10-02”, “2015-02-03”, “”)</p>
+</blockquote>
 
 <table>
 <thead>
