@@ -22,7 +22,7 @@
 
 
 
-<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-javadoc">/**
      * queryMyContentAsBean(查询联系人返回实体bean)
      * 
      *<span class="hljs-javadoctag"> @return</span> MyContent
@@ -94,7 +94,7 @@
 
 
 
-<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-javadoc">/**
      * querySelfCountAsBean(查询个人信息返回个人信息实体)
      * 
      *<span class="hljs-javadoctag"> @return</span> SelfContent
@@ -148,7 +148,7 @@
 
 
 
-<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-javadoc">/**
      * queryTrainInfoAsBean(查询车次信息返回车次实体)
      *<span class="hljs-javadoctag"> @param</span> train_no  车次
      *<span class="hljs-javadoctag"> @param</span> start     开始站
@@ -241,7 +241,7 @@
 
 
 
-<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
+<pre class="prettyprint"><code class="language-java hljs "><span class="hljs-javadoc">/**
      * 
      * querySeatsLeftAsBean(查询余票返回实体)
      * 
@@ -474,7 +474,7 @@
 
 
 
-<pre class="prettyprint"><code class=" hljs java">    <span class="hljs-javadoc">/**
+<pre class="prettyprint"><code class="language-java hljs ">    <span class="hljs-javadoc">/**
      * queryOrdersAsBean(查询订单返回订单实体)
      *<span class="hljs-javadoctag"> @param</span> startdate 历史订单起始时间
      *<span class="hljs-javadoctag"> @param</span> enddate   历史订单结束时间
