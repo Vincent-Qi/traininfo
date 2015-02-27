@@ -1,544 +1,185 @@
-<h1 id="火车票信息查询">火车票信息查询</h1>
+火车票信息查询
+===================
 
-<blockquote>
-  <p>主要提供余票,车次,历史订单,联系人信息,个人信息的查询</p>
-</blockquote>
+> 主要提供余票,车次,历史订单,联系人信息,个人信息的查询
 
+Documents
+----------
 
+只提供接口(**Ilaunch**)
+使用方法：
 
-<h2 id="documents">Documents</h2>
+    Ilaunch iaun=new Launch();
 
-<p>只提供接口(<strong>Ilaunch</strong>) <br>
-使用方法：</p>
+*每个方法对应返回有实体和实体的toString字符串，使用实体的话可以自己处理返回的信息.*
+####<i class="icon-file"></i>获取联系人信息
+```
+/**
+	 * queryMyContentAsBean(查询联系人返回实体bean)
+	 * 
+	 * @return MyContent
+	 * @exception
+	 * @since 1.0.0
+	 */
+	public MyContent queryMyContentAsBean();
 
-<pre><code>Ilaunch iaun=new Launch();
-</code></pre>
+	/**
+	 * queryMyContentAsString(查询联系人返回实体toString)
+	 * 
+	 * @return String
+	 * @exception
+	 * @since 1.0.0
+	 */
+	public String queryMyContentAsString();
+```
 
-<p><em>每个方法对应返回有实体和实体的toString字符串，使用实体的话可以自己处理返回的信息.</em></p>
+> iaun.queryMyContentAsString()
 
+|姓名|证件类型|证件号码|手机/电话|旅客类型|核验状态|
+|---|-----|--------|-------|-------|------|
+| 韩*|二代身份证|3412211*******757||成人|已核验|
+| 祁*|二代身份证|3412211*******797|18520***756|成人|已核验|
+| 任*|二代身份证|3412211*******727||成人|已核验|
+| 王*|二代身份证|3412211*******737||成人|已核验|
 
+####<i class="icon-file"></i>获取个人注册信息
+```
+/**
+	 * querySelfCountAsBean(查询个人信息返回个人信息实体)
+	 * 
+	 * @return SelfContent
+	 * @exception
+	 * @since 1.0.0
+	 */
+	public SelfContent querySelfCountAsBean();
 
-<h4 id="获取联系人信息"><i class="icon-file"></i>获取联系人信息</h4>
+	/**
+	 * querySelfCountAsString(查询个人信息返回实体toString)
+	 * 
+	 * @return String
+	 * @exception
+	 * @since 1.0.0
+	 */
+	public String querySelfCountAsString();
+```
+>  iaun.querySelfCountAsString()
 
+|用户名|姓名|证件类型|证件号码|性别|国家|出生日期|手机号码|电子邮件|
+|-----|---|------|-------|---|---|-------|------|------|
+|vincentQi|祁*|二代身份证|3412211**070|男|中国CHINA|1992-10-01|185206786|463349267@qq.com|
 
+####<i class="icon-file"></i>车次途径站信息
+```
+/**
+	 * queryTrainInfoAsBean(查询车次信息返回车次实体)
+	 * @param train_no  车次
+	 * @param start     开始站
+	 * @param end       结束站
+	 * @return 
+	 *TrainInfo
+	 * @exception 
+	 * @since  1.0.0
+	 */
+	public TrainInfo queryTrainInfoAsBean(String train_no, String start,
+			String end);
 
-<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
-     * queryMyContentAsBean(查询联系人返回实体bean)
-     * 
-     *<span class="hljs-javadoctag"> @return</span> MyContent
-     *<span class="hljs-javadoctag"> @exception</span>
-     *<span class="hljs-javadoctag"> @since</span> 1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> MyContent <span class="hljs-title">queryMyContentAsBean</span>();
+	/**
+	 * queryTrainInfoAsString(查询车次信息返回车次实体toString)
+	 * 
+	 * @return String
+	 * @exception
+	 * @since 1.0.0
+	 */
+	public String queryTrainInfoAsString(String train_no, String start,
+			String end);
+```
+>  iaun.queryTrainInfoAsString("k8554", "阜阳", "合肥")
 
-    <span class="hljs-javadoc">/**
-     * queryMyContentAsString(查询联系人返回实体toString)
-     * 
-     *<span class="hljs-javadoctag"> @return</span> String
-     *<span class="hljs-javadoctag"> @exception</span>
-     *<span class="hljs-javadoctag"> @since</span> 1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> String <span class="hljs-title">queryMyContentAsString</span>();</code></pre>
+|站序|站名|到站时间|出发时间|停留时间|
+|---|-----|--------|-------|-------|
+|01|池州|--|11:00|--||
+|02|铜陵|12:08|12:13|5分钟|
+|03|芜湖|13:40|13:46|6分钟|
+|04|巢湖|14:44|14:47|3分钟|
+|05|合肥|15:46|16:01|15分钟|
+|06|淮南|17:13|17:16|3分钟|
+|07|阜阳|18:56|18:56|--|
+####<i class="icon-file"></i>获取余票信息
+```
+/**
+	 * 
+	 * querySeatsLeftAsBean(查询余票返回实体)
+	 * 
+	 * @param purpose 乘客类型(成人,学生)
+	 * @param date  出发日期
+	 * @param start 开始站
+	 * @param end   结束站
+	 * @return TicketInfo
+	 * @exception
+	 * @since 1.0.0
+	 */
+	public TicketInfo querySeatsLeftAsBean(String purpose, String date,
+			String start, String end);
 
-<blockquote>
-  <p>iaun.queryMyContentAsString()</p>
-</blockquote>
+	/**
+	 * querySeatsLeftAsString(查询余票返回实体的toString)
+	 * 
+     * @param purpose 乘客类型(成人,学生)
+	 * @param date  出发日期
+	 * @param start 开始站
+	 * @param end   结束站
+	 * @return TicketInfo
+	 * @exception
+	 * @since 1.0.0
+	 */
+	public String querySeatsLeftAsString(String purpose, String date,
+			String start, String end);
+```
+>  iaun.querySeatsLeftAsString("成人", "2015-02-04", "阜阳", "合肥")
 
-<table>
-<thead>
-<tr>
-  <th>姓名</th>
-  <th>证件类型</th>
-  <th>证件号码</th>
-  <th>手机/电话</th>
-  <th>旅客类型</th>
-  <th>核验状态</th>
-</tr>
-</thead>
-<tbody><tr>
-  <td>韩*</td>
-  <td>二代身份证</td>
-  <td>3412211*******757</td>
-  <td></td>
-  <td>成人</td>
-  <td>已核验</td>
-</tr>
-<tr>
-  <td>祁*</td>
-  <td>二代身份证</td>
-  <td>3412211*******797</td>
-  <td>18520***756</td>
-  <td>成人</td>
-  <td>已核验</td>
-</tr>
-<tr>
-  <td>任*</td>
-  <td>二代身份证</td>
-  <td>3412211*******727</td>
-  <td></td>
-  <td>成人</td>
-  <td>已核验</td>
-</tr>
-<tr>
-  <td>王*</td>
-  <td>二代身份证</td>
-  <td>3412211*******737</td>
-  <td></td>
-  <td>成人</td>
-  <td>已核验</td>
-</tr>
-</tbody></table>
+|车次|出发站|到达站|出发时间|到达时间|历时|商务座|特等座|一等座|二等座|高级软卧|软卧|硬卧|软座|硬座|无座|其他|
+|---|-----|-----|------|-------|---|-----|----|-----|-----|------|---|----|---|---|--|----|
+|K8411|阜阳|合肥|17:11|20:00|02:49|--|--|--|--|--|--|--|--|828|750|--| 
+|K4073|阜阳|合肥|17:17|21:29|04:12|--|--|--|--|--|--|无|--|10|无|--|
+|K8361|阜阳|合肥|17:28|21:01|03:33|--|--|--|--|--|--|无|--|10|无|--|
+|K1237|阜阳|合肥|17:36|20:14|02:38|--|--|--|--|--|4|20|--|132|334|--|
+|K8499|阜阳|合肥|17:52|20:35|02:43|--|--|--|--|--|1|55|--|无|无|--|
+|K8563|阜阳|合肥|20:33|23:10|02:37|--|--|--|--|--|4|9|--|无|无|--|
+|L297|阜阳|合肥|21:30|00:35|03:05|--|--|--|--|--|--|--|25|1000|956|--|
+|K8555|阜阳|合肥|22:04|00:42|02:38|--|--|--|--|--|37|130|--|430|158|--|
+|T325|阜阳|合肥|23:30|02:12|02:42|--|--|--|--|--|1|3|--|100|248|--|
 
+####<i class="icon-file"></i>获取历史订单信息
+```
+	/**
+	 * queryOrdersAsBean(查询订单返回订单实体)
+     * @param startdate 历史订单起始时间
+     * @param enddate   历史订单结束时间
+     * @param queryinfo [订单号,车次,乘客姓名]
+     * @return 
+     * @exception 
+     * @since  1.0.0
+	 */
+	public Orders queryOrdersAsBean(String startdate, String enddate,
+			String queryinfo);
 
-<h4 id="获取个人注册信息"><i class="icon-file"></i>获取个人注册信息</h4>
+	/**
+	 * queryOrdersAsString(查询订单返回实体toString)
+     * @param startdate 历史订单起始时间
+     * @param enddate   历史订单结束时间
+     * @param queryinfo [订单号,车次,乘客姓名]
+     * @return 
+     * @exception 
+     * @since  1.0.0
+	 */
+	public String queryOrdersAsString(String startdate, String enddate,
+			String queryinfo);
+```
 
+>  iaun.queryOrdersAsString("2014-10-02", "2015-02-03", "")
 
-
-<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
-     * querySelfCountAsBean(查询个人信息返回个人信息实体)
-     * 
-     *<span class="hljs-javadoctag"> @return</span> SelfContent
-     *<span class="hljs-javadoctag"> @exception</span>
-     *<span class="hljs-javadoctag"> @since</span> 1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> SelfContent <span class="hljs-title">querySelfCountAsBean</span>();
-
-    <span class="hljs-javadoc">/**
-     * querySelfCountAsString(查询个人信息返回实体toString)
-     * 
-     *<span class="hljs-javadoctag"> @return</span> String
-     *<span class="hljs-javadoctag"> @exception</span>
-     *<span class="hljs-javadoctag"> @since</span> 1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> String <span class="hljs-title">querySelfCountAsString</span>();</code></pre>
-
-<blockquote>
-  <p>iaun.querySelfCountAsString()</p>
-</blockquote>
-
-<table>
-<thead>
-<tr>
-  <th>用户名</th>
-  <th>姓名</th>
-  <th>证件类型</th>
-  <th>证件号码</th>
-  <th>性别</th>
-  <th>国家</th>
-  <th>出生日期</th>
-  <th>手机号码</th>
-  <th>电子邮件</th>
-</tr>
-</thead>
-<tbody><tr>
-  <td>vincentQi</td>
-  <td>祁*</td>
-  <td>二代身份证</td>
-  <td>3412211**070</td>
-  <td>男</td>
-  <td>中国CHINA</td>
-  <td>1992-10-01</td>
-  <td>185206786</td>
-  <td>463349267@qq.com</td>
-</tr>
-</tbody></table>
-
-
-<h4 id="车次途径站信息"><i class="icon-file"></i>车次途径站信息</h4>
-
-
-
-<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
-     * queryTrainInfoAsBean(查询车次信息返回车次实体)
-     *<span class="hljs-javadoctag"> @param</span> train_no  车次
-     *<span class="hljs-javadoctag"> @param</span> start     开始站
-     *<span class="hljs-javadoctag"> @param</span> end       结束站
-     *<span class="hljs-javadoctag"> @return</span> 
-     *TrainInfo
-     *<span class="hljs-javadoctag"> @exception</span> 
-     *<span class="hljs-javadoctag"> @since</span>  1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> TrainInfo <span class="hljs-title">queryTrainInfoAsBean</span>(String train_no, String start,
-            String end);
-
-    <span class="hljs-javadoc">/**
-     * queryTrainInfoAsString(查询车次信息返回车次实体toString)
-     * 
-     *<span class="hljs-javadoctag"> @return</span> String
-     *<span class="hljs-javadoctag"> @exception</span>
-     *<span class="hljs-javadoctag"> @since</span> 1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> String <span class="hljs-title">queryTrainInfoAsString</span>(String train_no, String start,
-            String end);</code></pre>
-
-<blockquote>
-  <p>iaun.queryTrainInfoAsString(“k8554”, “阜阳”, “合肥”)</p>
-</blockquote>
-
-<table>
-<thead>
-<tr>
-  <th>站序</th>
-  <th>站名</th>
-  <th>到站时间</th>
-  <th>出发时间</th>
-  <th>停留时间</th>
-</tr>
-</thead>
-<tbody><tr>
-  <td>01</td>
-  <td>池州</td>
-  <td>–</td>
-  <td>11:00</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>02</td>
-  <td>铜陵</td>
-  <td>12:08</td>
-  <td>12:13</td>
-  <td>5分钟</td>
-</tr>
-<tr>
-  <td>03</td>
-  <td>芜湖</td>
-  <td>13:40</td>
-  <td>13:46</td>
-  <td>6分钟</td>
-</tr>
-<tr>
-  <td>04</td>
-  <td>巢湖</td>
-  <td>14:44</td>
-  <td>14:47</td>
-  <td>3分钟</td>
-</tr>
-<tr>
-  <td>05</td>
-  <td>合肥</td>
-  <td>15:46</td>
-  <td>16:01</td>
-  <td>15分钟</td>
-</tr>
-<tr>
-  <td>06</td>
-  <td>淮南</td>
-  <td>17:13</td>
-  <td>17:16</td>
-  <td>3分钟</td>
-</tr>
-<tr>
-  <td>07</td>
-  <td>阜阳</td>
-  <td>18:56</td>
-  <td>18:56</td>
-  <td>–</td>
-</tr>
-</tbody></table>
-
-
-<h4 id="获取余票信息"><i class="icon-file"></i>获取余票信息</h4>
-
-
-
-<pre class="prettyprint"><code class=" hljs java"><span class="hljs-javadoc">/**
-     * 
-     * querySeatsLeftAsBean(查询余票返回实体)
-     * 
-     *<span class="hljs-javadoctag"> @param</span> purpose 乘客类型(成人,学生)
-     *<span class="hljs-javadoctag"> @param</span> date  出发日期
-     *<span class="hljs-javadoctag"> @param</span> start 开始站
-     *<span class="hljs-javadoctag"> @param</span> end   结束站
-     *<span class="hljs-javadoctag"> @return</span> TicketInfo
-     *<span class="hljs-javadoctag"> @exception</span>
-     *<span class="hljs-javadoctag"> @since</span> 1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> TicketInfo <span class="hljs-title">querySeatsLeftAsBean</span>(String purpose, String date,
-            String start, String end);
-
-    <span class="hljs-javadoc">/**
-     * querySeatsLeftAsString(查询余票返回实体的toString)
-     * 
-     *<span class="hljs-javadoctag"> @param</span> purpose 乘客类型(成人,学生)
-     *<span class="hljs-javadoctag"> @param</span> date  出发日期
-     *<span class="hljs-javadoctag"> @param</span> start 开始站
-     *<span class="hljs-javadoctag"> @param</span> end   结束站
-     *<span class="hljs-javadoctag"> @return</span> TicketInfo
-     *<span class="hljs-javadoctag"> @exception</span>
-     *<span class="hljs-javadoctag"> @since</span> 1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> String <span class="hljs-title">querySeatsLeftAsString</span>(String purpose, String date,
-            String start, String end);</code></pre>
-
-<blockquote>
-  <p>iaun.querySeatsLeftAsString(“成人”, “2015-02-04”, “阜阳”, “合肥”)</p>
-</blockquote>
-
-<table>
-<thead>
-<tr>
-  <th>车次</th>
-  <th>出发站</th>
-  <th>到达站</th>
-  <th>出发时间</th>
-  <th>到达时间</th>
-  <th>历时</th>
-  <th>商务座</th>
-  <th>特等座</th>
-  <th>一等座</th>
-  <th>二等座</th>
-  <th>高级软卧</th>
-  <th>软卧</th>
-  <th>硬卧</th>
-  <th>软座</th>
-  <th>硬座</th>
-  <th>无座</th>
-  <th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-  <td>K8411</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>17:11</td>
-  <td>20:00</td>
-  <td>02:49</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>828</td>
-  <td>750</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>K4073</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>17:17</td>
-  <td>21:29</td>
-  <td>04:12</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>无</td>
-  <td>–</td>
-  <td>10</td>
-  <td>无</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>K8361</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>17:28</td>
-  <td>21:01</td>
-  <td>03:33</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>无</td>
-  <td>–</td>
-  <td>10</td>
-  <td>无</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>K1237</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>17:36</td>
-  <td>20:14</td>
-  <td>02:38</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>4</td>
-  <td>20</td>
-  <td>–</td>
-  <td>132</td>
-  <td>334</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>K8499</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>17:52</td>
-  <td>20:35</td>
-  <td>02:43</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>1</td>
-  <td>55</td>
-  <td>–</td>
-  <td>无</td>
-  <td>无</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>K8563</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>20:33</td>
-  <td>23:10</td>
-  <td>02:37</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>4</td>
-  <td>9</td>
-  <td>–</td>
-  <td>无</td>
-  <td>无</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>L297</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>21:30</td>
-  <td>00:35</td>
-  <td>03:05</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>25</td>
-  <td>1000</td>
-  <td>956</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>K8555</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>22:04</td>
-  <td>00:42</td>
-  <td>02:38</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>37</td>
-  <td>130</td>
-  <td>–</td>
-  <td>430</td>
-  <td>158</td>
-  <td>–</td>
-</tr>
-<tr>
-  <td>T325</td>
-  <td>阜阳</td>
-  <td>合肥</td>
-  <td>23:30</td>
-  <td>02:12</td>
-  <td>02:42</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>–</td>
-  <td>1</td>
-  <td>3</td>
-  <td>–</td>
-  <td>100</td>
-  <td>248</td>
-  <td>–</td>
-</tr>
-</tbody></table>
-
-
-<h4 id="获取历史订单信息"><i class="icon-file"></i>获取历史订单信息</h4>
-
-
-
-<pre class="prettyprint"><code class=" hljs java">    <span class="hljs-javadoc">/**
-     * queryOrdersAsBean(查询订单返回订单实体)
-     *<span class="hljs-javadoctag"> @param</span> startdate 历史订单起始时间
-     *<span class="hljs-javadoctag"> @param</span> enddate   历史订单结束时间
-     *<span class="hljs-javadoctag"> @param</span> queryinfo [订单号,车次,乘客姓名]
-     *<span class="hljs-javadoctag"> @return</span> 
-     *<span class="hljs-javadoctag"> @exception</span> 
-     *<span class="hljs-javadoctag"> @since</span>  1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> Orders <span class="hljs-title">queryOrdersAsBean</span>(String startdate, String enddate,
-            String queryinfo);
-
-    <span class="hljs-javadoc">/**
-     * queryOrdersAsString(查询订单返回实体toString)
-     *<span class="hljs-javadoctag"> @param</span> startdate 历史订单起始时间
-     *<span class="hljs-javadoctag"> @param</span> enddate   历史订单结束时间
-     *<span class="hljs-javadoctag"> @param</span> queryinfo [订单号,车次,乘客姓名]
-     *<span class="hljs-javadoctag"> @return</span> 
-     *<span class="hljs-javadoctag"> @exception</span> 
-     *<span class="hljs-javadoctag"> @since</span>  1.0.0
-     */</span>
-    <span class="hljs-keyword">public</span> String <span class="hljs-title">queryOrdersAsString</span>(String startdate, String enddate,
-            String queryinfo);</code></pre>
-
-<blockquote>
-  <p>iaun.queryOrdersAsString(“2014-10-02”, “2015-02-03”, “”)</p>
-</blockquote>
-
-<table>
-<thead>
-<tr>
-  <th align="left">订单号</th>
-  <th align="left">订单日期</th>
-  <th align="center">车次信息</th>
-  <th align="center">席位信息</th>
-  <th align="center">旅客信息</th>
-  <th align="center">票款金额</th>
-  <th align="center">车票状态</th>
-</tr>
-</thead>
-<tbody><tr>
-  <td align="left">E384519949</td>
-  <td align="left">2015-01-17 10:37:17</td>
-  <td align="center">2015-01-19 09:48 K8412合肥-&gt;阜阳</td>
-  <td align="center">14车厢 ^03d号^硬卧代硬座</td>
-  <td align="center">任^二代身份证</td>
-  <td align="center">成人票^37.5</td>
-  <td align="center">已出票</td>
-</tr>
-<tr>
-  <td align="left">E387371982</td>
-  <td align="left">2015-01-14 15:29:34</td>
-  <td align="center">2015-01-15 13:40 K8421阜阳-&gt;合肥</td>
-  <td align="center">04车厢 ^004号^硬座</td>
-  <td align="center">任^二代身份证</td>
-  <td align="center">成人票^37.5</td>
-  <td align="center">已出票</td>
-</tr>
-<tr>
-  <td align="left">E380221316</td>
-  <td align="left">2015-01-04 21:18:15</td>
-  <td align="center">2015-01-06 17:11 K8411阜阳-&gt;合肥</td>
-  <td align="center">03车厢 ^114号^硬座</td>
-  <td align="center">任*^二代身份证</td>
-  <td align="center">成人票^37.5</td>
-  <td align="center">已退票(业务流水号:2E380221316001001112426913)</td>
-</tr>
-</tbody></table>
+|订单号|订单日期|车次信息|席位信息|旅客信息|票款金额|车票状态|
+|:-----|:------|:------:|:-------:|:------:|:-------:|:------:|
+|E384519949|2015-01-17 10:37:17| 2015-01-19 09:48 K8412合肥->阜阳| 14车厢 ^03d号^硬卧代硬座| 任^二代身份证|成人票^37.5|已出票|
+|E387371982|2015-01-14 15:29:34|2015-01-15 13:40 K8421阜阳->合肥|04车厢 ^004号^硬座|任^二代身份证|成人票^37.5|已出票|
+|E380221316|2015-01-04 21:18:15|2015-01-06 17:11 K8411阜阳->合肥|03车厢 ^114号^硬座|任*^二代身份证|成人票^37.5|已退票(业务流水号:2E380221316001001112426913)|
